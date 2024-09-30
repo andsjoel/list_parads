@@ -1,0 +1,126 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    padding: 20px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    max-width: 375px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    /* max-width: 800px; */
+    margin: 0 auto;
+    /* background-color: #f0f0f0; */
+    width: 100vw;
+}
+
+form {
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+input[type="text"] {
+    /* background-color: yellow; */
+    /* flex: 1; */
+    width: 100%;
+    padding: 5px;
+    text-align: center;
+    margin-right: 10px;
+    border: 1px solid black;
+    border-radius: 8px;
+    height: 30px;
+}
+
+.add-div {
+    /* background-color: red; */
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-div label {
+    background-color: red;
+    padding: 10px;
+    width: 100px;
+}
+
+.add-div button {
+    /* padding: 10px; */
+    /* font-family; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    font-size: 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.add-div button:hover {
+    background-color: #218838;
+}
+
+#teamsContainer {
+    margin-top: 20px;
+}
+
+.team {
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.team h2 {
+    margin-bottom: 10px;
+}
+
+.player {
+    padding: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    background-color: #e9ecef;
+    cursor: grab;
+}
+
+.player.dragging {
+    opacity: 0.5;
+}
+
+.trash {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    background-color: #dc3545;
+    color: white;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.trash:hover {
+    background-color: #c82333;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lauds</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <form id="addPlayerForm">
+            <input type="text" id="playerName" placeholder="Nome do Jogador" required>
+            <div class="add-div">
+                <label>
+                    <input type="checkbox" id="isSetter"> Levantador
+                </label>
+                <label>
+                    <input type="checkbox" id="isWoman"> Mulher
+                </label>
+                <button type="submit">+</button>
+            </div>
+        </form>
+
+        <div id="teamsContainer"></div>
+
+        <div id="trash" class="trash">Lixeira</div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
