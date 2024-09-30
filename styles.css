@@ -8,22 +8,23 @@ body {
     font-family: Arial, sans-serif;
     background-color: black;
     padding: 20px;
-    position: absolute;
+    /* position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    width: 100%;
+    width: 100%; */
     max-width: 375px;
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
+    margin-bottom: 100px;
 }
 
 .container {
     /* max-width: 800px; */
-    margin: 0 auto;
+    /* margin: 0 auto; */
     /* background-color: #f0f0f0; */
-    width: 100vw;
+    width: 100%;
 }
 
 form {
