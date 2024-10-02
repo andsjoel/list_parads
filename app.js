@@ -1,3 +1,5 @@
+// app.js
+
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('addPlayerForm');
     const teamsContainer = document.getElementById('teamsContainer');
@@ -26,6 +28,16 @@ document.addEventListener('DOMContentLoaded', () => {
             form.reset();
         }
     });
+
+    // Adicionando o evento para o botão de popular times
+    document.getElementById('populateTeamsButton').addEventListener('click', populateTeams);
+
+    function populateTeams() {
+        mockPlayers.forEach(player => {
+            addPlayerToTeam(player);
+        });
+        renderTeams();
+    }
 
     // Adiciona um jogador à equipe seguindo as regras
     function addPlayerToTeam(player) {
@@ -89,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Funções de drag-and-drop para desktop
+    // Funções de drag-and-drop
     let draggedElement = null;
 
     function handleDragStart(event) {
@@ -104,17 +116,10 @@ document.addEventListener('DOMContentLoaded', () => {
         draggedElement = null;
     }
 
-    // Adaptando para dispositivos móveis (touch)
-    function handleTouchStart(event) {
-        draggedElement = event.target;
-        draggedElement.classList.add('dragging');
-    }
-
-    function handleTouchMove(event) {
+    teamsContainer.addEventListener('dragover', (event) => {
         event.preventDefault();
-        const touch = event.touches[0];
-        const afterElement = getDragAfterElement(teamsContainer, touch.clientY);
-        const team = document.elementFromPoint(touch.clientX, touch.clientY).closest('.team');
+        const afterElement = getDragAfterElement(teamsContainer, event.clientY);
+        const team = event.target.closest('.team');
         if (team && draggedElement) {
             if (afterElement == null) {
                 team.appendChild(draggedElement);
@@ -122,28 +127,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 team.insertBefore(draggedElement, afterElement);
             }
         }
-    }
+    });
 
-    function handleTouchEnd() {
-        if (draggedElement) {
-            draggedElement.classList.remove('dragging');
-            draggedElement = null;
-        }
-    }
-
-    // Para cada jogador, adicionar os eventos de toque e arrastar
-    function addDragAndDropListeners(playerElement) {
-        // Eventos de desktop
-        playerElement.addEventListener('dragstart', handleDragStart);
-        playerElement.addEventListener('dragend', handleDragEnd);
-
-        // Eventos de toque para dispositivos móveis
-        playerElement.addEventListener('touchstart', handleTouchStart);
-        playerElement.addEventListener('touchmove', handleTouchMove);
-        playerElement.addEventListener('touchend', handleTouchEnd);
-    }
-
-    // Função para remover jogador ao soltá-lo na lixeira (para desktop e toque)
     trash.addEventListener('dragover', (event) => {
         event.preventDefault();
     });
@@ -156,19 +141,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    trash.addEventListener('touchmove', (event) => {
-        event.preventDefault();
-    });
+    function removePlayerFromTeams(playerId) {
+        teams = teams.map(team => team.filter(player => player.id != playerId));
+        teams = teams.filter(team => team.length > 0); // Remove times vazios
+    }
 
-    trash.addEventListener('touchend', () => {
-        if (draggedElement) {
-            const playerId = draggedElement.dataset.id;
-            removePlayerFromTeams(playerId);
-            renderTeams();
-        }
-    });
-
-    // Função para encontrar o próximo jogador a ser movido com base na posição de toque ou mouse
     function getDragAfterElement(container, y) {
         const draggableElements = [...container.querySelectorAll('.player:not(.dragging)')];
 
@@ -218,9 +195,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Move o time perdedor para o final da lista
         teams.push(losingTeam);
 
-        // Adiciona o time vencedor ao final da fila (time 3)
-        teams.push(winningTeam);
-
         // Cria dois novos times se necessário
         createNewTeams();
 
@@ -234,5 +208,4 @@ document.addEventListener('DOMContentLoaded', () => {
             teams.push([]);
         }
     }
-    
 });

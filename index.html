@@ -3,29 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lauds</title>
+    <title>Organizador de Partidas de Vôlei</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
+        <button id="populateTeamsButton">Popular Times</button>
+        <h1>Organizador de Partidas de Vôlei</h1>
+        
+        <!-- Formulário para adicionar jogadores -->
         <form id="addPlayerForm">
             <input type="text" id="playerName" placeholder="Nome do Jogador" required>
-            <div class="add-div">
-                <label>
-                    <input type="checkbox" id="isSetter"> Levantador
-                </label>
-                <label>
-                    <input type="checkbox" id="isWoman"> Mulher
-                </label>
-                <button type="submit">+</button>
-            </div>
+            <label>
+                <input type="checkbox" id="isSetter"> Levantador
+            </label>
+            <label>
+                <input type="checkbox" id="isWoman"> Mulher
+            </label>
+            <button type="submit">Adicionar Jogador</button>
         </form>
 
+        <!-- Div que irá conter a lista de times -->
         <div id="teamsContainer"></div>
 
+        <!-- Área de lixeira para remover jogadores -->
         <div id="trash" class="trash">Lixeira</div>
     </div>
 
     <script src="app.js"></script>
+    <script src="mockData.js"></script>
 </body>
 </html>
